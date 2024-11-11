@@ -5,7 +5,6 @@ export interface AuthenticatedRequest extends Request {
   user?: any;
 }
 
-
 export const authMiddleware = (
   req: AuthenticatedRequest,
   res: Response,
