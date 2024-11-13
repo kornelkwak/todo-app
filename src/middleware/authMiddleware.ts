@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 export interface AuthenticatedRequest extends Request {
   user?: any;
@@ -18,7 +18,11 @@ export const authMiddleware = (
   }
 
   try {
-    const decoded = jwt.verify(token, "yourSecretKey");
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new Error("JWT_SECRET is not defined in environment variables");
+    }
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
     req.user = decoded;
     next();
   } catch (error) {

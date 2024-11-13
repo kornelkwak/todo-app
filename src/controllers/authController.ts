@@ -2,6 +2,7 @@ import User from "../models/user";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { AuthenticatedRequest } from "../middleware/authMiddleware";
 
 export const userRegister = async (
   req: Request,
@@ -45,7 +46,7 @@ export const userLogin = async (req: Request, res: Response): Promise<void> => {
     process.env.JWT_SECRET as string, {
       expiresIn: "1h",
     });
-    res.status(200).json({ token });
+    res.status(200).json({ token, message: "User logged in" });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
