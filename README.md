@@ -2,6 +2,8 @@
 
 A simple Todo API for managing tasks, built with Node.js, TypeScript, MongoDB, and JWT for authentication. The application is hosted on Render with MongoDB Atlas for the database.
 
+Project live: https://todo-app-p2jr.onrender.com
+
 ## Technologies Used
 
 - **Node.js** (with TypeScript)
